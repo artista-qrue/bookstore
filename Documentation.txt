@@ -1,0 +1,28 @@
+RestTemplate => Webserviclere erişmek için resttemplate kullanıyoruz.Resttemplate configurasyonu için restTemplateBuilder sunar.
+Restample ile birlikte get, post, put, delete  metodları vardır . Bu metodlar ile  input olarak sunucu tarafında işlem yapacak web url verilmektedir.
+
+get metoducu için  getForObject(); input olarak url ve beklenilen nesnenin tipini ister.http message convertor kullarak belirtilen nesneye dönüşüm gerçekleştirir.
+
+
+
+ 
+ Bazı  test işlemlerinde  silme, değiştirme gibi işlemler yapıldığında güncel halinde hata verebiliyor. Sorgu post ya da get işleminin başarılı olduğu sadece sunucu da bulunamadığı gibi
+ hatalar alabiliyoruz.post işlemi sonucu dönen location url e get isteği gönderilerek bu kayıt çekiliyor. Post 201 dönmüş yani başarılı, get ise 404 dönmüş yani 
+ bu url mevcut değil demek. Hata ve cözümü hakkında bilgimi ifade etmek istedim.
+
+ Model sınıflarının tasarımında kullanılan yöntem ise en az bağılılık ile sınıfları oluşturmak üzerine oldu. Price değişkenin bookstore üzerine değişkenlik gösterebileceği
+ belirtilmişti. Bunun üzerine bende iki türlü yaklaşım üzerine düşündüm birinci yöntem price bulunduğu sınıfı abstract yapıp diğer sınıflar ile kalıtıma sokacaktım. Bu şekilde set override 
+ ederek değiştirme imkanım olacaktı.Bu çözüm hatalı bir yaklaşım olduğunu yapılan testler ile keşfettim çünkü nerede ezilirse ezilsin ana sınıftaki price da ezilecekti.Bunun üzerine 
+ araştırmalarım sonucunda clone objectler üzerine yoğunlaştım.Ve kullandığım kaynak https://howtodoinjava.com/java/cloning/a-guide-to-object-cloning-in-java/ adresindeki yöntemlerden 4.yöntemi
+ kullanarak deep clone copy yöntemi ile var olan nesneyi koruyarak bir clone nesne üretip ürettiğim clone nesnesi üzerinden değişiklik yaptım.
+ 
+ projeyi gerçekleştirirken kullandığım kaynaklar :
+ 
+https://stackoverflow.com/search?q=spring+boot
+https://www.google.com/search?q=spring+boot+restful+insert&oq=spring+boot+&aqs=chrome.0.69i59l5j69i60l3.7097j1j4&sourceid=chrome&ie=UTF-8
+
+udemy üzerinden daha önce satın aldığım eğitim setleri.
+https://howtodoinjava.com
+https://github.com/search?q=spring+boot
+
+*imla ve kelime hataları için özürlerimi dilerim.
