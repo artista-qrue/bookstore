@@ -24,10 +24,24 @@ import com.homework.model.Category;
 import com.homework.model.Price;
 import com.homework.services.BookStoreServices;
 
+// bu notasyon sayesinde spring container bir tane controller beani yaratacak ve ayrı ayrı handler metodlara responsebody yazmaktan bizi kurtaracak.
 @RestController
+//sınıf düzeyinde request mapping kullanmamız ise bütün handler metodlara birer birer belirtilen prefix eklememize gerek kalmayacak.
 @RequestMapping("/rest")
 public class BookStoreRestController {
 
+	/* @controller, @requestmapping , @pathvarible =>  dinamik web üretmek için handler metodlarda veya sınıf düzeyinde kullanılan anotasyonlardır.
+	 * @requestbody, @responsebody, @responsestatus => bu anotasyonlar rest servislerinin request ve response  içeriklerinin statu codlarını oluşturmak için kullanılan
+	 *  anotasyonlardır.
+	 * @restcontroller => @controller ve @responsbody anotasyonlarını bir arada  tanımlayan rest service metodlarının her birisinde responsbody koyma yükünü kaldıran yardımcı bir anotasyondur. 
+	 * 
+	 *  ResponseEntity<> => bu nesne ile webservicelerin hem return edecekleri içerik hem de statu kodlarını birlikte donecektir.
+	 *  
+	 *  @requestparam  => bu notasyon ile eyer prefix de bir değer göre arama yapacaksak bu paramatrenin değerine göre bir mapping yapar.
+	 *  @pathVariable => bu notasyon ile eyer prefixdeki(request url) değer bizim için bir input arguman olarak geçirilmesi sağlanmış 
+	 *  @requestbody => eğer istek ve post bizim için bir nesne olarak geçiyorsa bunu requestbody anotasyonu ile web isteğinin içindeki body kısmı http message convertor vasıtası ile json or xml halleri ilgili nesneye dönüştürelecektir. 
+	 * */
+	//instance oluşturdu ve service beani enjecte ediyor.
 	@Autowired
 	private BookStoreServices bookStoreServices;
 
@@ -73,6 +87,7 @@ public class BookStoreRestController {
 		}
 	}
 
+	//yapılacak isteğin bir get olduğunu method ile bildiriyoruz.prefix ekleyerek yapılacak isteğin yolunu bildiriyoruz.	
 	@RequestMapping(method = RequestMethod.GET, value = "/bookstores")
 	public ResponseEntity<List<BookStore>> getBookStores() {
 		List<BookStore> bookstores = bookStoreServices.getAllBookstores();
