@@ -1,7 +1,7 @@
 RestTemplate => Webserviclere erişmek için resttemplate kullanıyoruz.Resttemplate configurasyonu için restTemplateBuilder sunar.
 Restample ile birlikte get, post, put, delete  metodları vardır . Bu metodlar ile  input olarak sunucu tarafında işlem yapacak web url verilmektedir.
 
-get metoducu için  getForObject(); input olarak url ve beklenilen nesnenin tipini ister.http message convertor kullarak belirtilen nesneye dönüşüm gerçekleştirir.
+get metoducu için  getForObject(); input olarak url ve beklenilen nesnenin tipini ister.http message convertor kullanarak belirtilen nesneye dönüşüm gerçekleştirir.
 
 
 
@@ -14,8 +14,15 @@ get metoducu için  getForObject(); input olarak url ve beklenilen nesnenin tipi
  belirtilmişti. Bunun üzerine bende iki türlü yaklaşım üzerine düşündüm birinci yöntem price bulunduğu sınıfı abstract yapıp diğer sınıflar ile kalıtıma sokacaktım. Bu şekilde set override 
  ederek değiştirme imkanım olacaktı.Bu çözüm hatalı bir yaklaşım olduğunu yapılan testler ile keşfettim çünkü nerede ezilirse ezilsin ana sınıftaki price da ezilecekti.Bunun üzerine 
  araştırmalarım sonucunda clone objectler üzerine yoğunlaştım.Ve kullandığım kaynak https://howtodoinjava.com/java/cloning/a-guide-to-object-cloning-in-java/ adresindeki yöntemlerden 4.yöntemi
- kullanarak deep clone copy yöntemi ile var olan nesneyi koruyarak bir clone nesne üretip ürettiğim clone nesnesi üzerinden değişiklik yaptım.
+ kullanarak deep clone copy yöntemi ile var olan nesneyi koruyarak bir clone nesne üretip ürettiğim clone nesnesi üzerinden değişiklik yaptım.Aşağıda clone metodlarının impl halleri görülmektedir.
  
+ 
+ @Override
+	public Object clone() throws CloneNotSupportedException {
+		Book cloned = (Book)super.clone(); super ile clonable sınıfdaki const cağrılır ve bunu book türünde bir clone nesnesine dönüştürülüyor. deep clone yapıldığı için const genişletilmek zorunda kaldı.
+	    cloned.setPrice((Price)cloned.getPrice().clone());   
+	    return cloned;
+	}
  projeyi gerçekleştirirken kullandığım kaynaklar :
  
 https://stackoverflow.com/search?q=spring+boot

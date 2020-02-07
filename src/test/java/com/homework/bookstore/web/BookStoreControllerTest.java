@@ -28,7 +28,9 @@ import com.homework.services.BookStoreServiceImpl;
 import com.homework.services.BookStoreServices;
 
 import net.bytebuddy.implementation.Implementation;
-
+/*Test işlemleri sırasında not found 404 hatası alabiliyorum, bunun sebeplerinden biri post işlemi yapılabiliyor 201 başarılı dönüyor ve gönderilen bilgiyi get ederken sunucu tabanlı hata
+ * alabiliyorum. Bunun için postman üzerinden testlerde doğru çalıştığını test ettim fakat eclipe üzerinden hata dönebiliyor.Çözüm araştırdım araştırmalarıma göre ya springapplication.run metodunun 
+ * olduğu yerde componenscan ile controller sınıfını kendimi göstereceğiz yada prefix id ile dao da ki id lerde arasında uyuşmazlık olduğundan ...*/
 public class BookStoreControllerTest {
 
 	private CategoryInMemoryImpl impl = new CategoryInMemoryImpl();
